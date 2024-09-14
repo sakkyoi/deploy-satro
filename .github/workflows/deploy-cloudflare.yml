@@ -1,0 +1,63 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clone satro
+        run: git clone https://github.com/sakkyoi/satro
+      - name: Copy content to satro
+        run: |
+          # contents
+          cp -r ./announcement ./satro/src/content
+          cp -r ./footer ./satro/src/content
+          cp -r ./article ./satro/src/content
+          cp -r ./image ./satro/src/content
+
+          # public (blog thumbnail, favicon)
+          cp -r ./public ./satro
+      - uses: actions/upload-artifact@master
+        with:
+          name: satro
+          path: ./satro
+  build:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: satro
+          path: ./
+      - name: Build
+        run: |
+          npm install
+          npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'http://localhost' }}
+          SITE_TITLE: ${{ vars.SITE_TITLE }}
+          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
+          SITE_LANG: ${{ vars.SITE_LANG }}
+      - uses: actions/upload-artifact@master
+        with:
+          name: dist
+          path: ./dist
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: dist
+          path: ./
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./ --project-name=${{ vars.PROJECT_NAME || vars.SITE_TITLE || 'satro' }}
