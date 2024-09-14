@@ -1,0 +1,57 @@
+# Deploy to Cloudflare Pages
+
+## Prepare repository
+
+1. Fork this repository to your GitHub account.
+2. Clone your forked repository to your local development environment.
+
+## Prepare Cloudflare page project
+
+1. Head to the [Workers and Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create) and press the `Create` button.
+![Create workers and pages](./image/cloudflare-create-workers-and-pages.png)
+
+2. Choose the `Pages` and press the `Upload assets` button.
+![Upload assets button](./image/cloudflare-upload-assets-button.png)
+
+3. Name your project and press the `Create project` button.
+![Create project button](./image/cloudflare-create-project.png)
+**Note:** You don't need to upload any assets here, just create the project.
+
+## Prepare Cloudflare API token and account ID
+
+### Cloudflare account ID
+
+1. Head back to the [Workers and Pages Overview](https://dash.cloudflare.com/?to=/:account/workers-and-pages). You can find your account ID on the `Account details` section.
+![Workers and Pages Overview](./image/cloudflare-workers-and-pages-overview.png)
+
+### Cloudflare API token
+
+1. And then click on the `Manage API Tokens` below the `Account ID`. Then click on the `Create Token` button.
+
+2. If you don't want to overthink about the permissions, you can simply choose the `Edit Cloudflare Workers` template.
+
+3. And do this if you don't want to overthink about it also, it's must be fine. Then press the `Continue to summary` > `Create Token` button.
+![Edit Cloudflare Workers template](./image/cloudflare-edit-workers-template.png)
+
+4. You can see your API token in this moment.
+![User API tokens](./image/cloudflare-user-api-tokens.png)
+
+## Set up GitHub workflow
+
+1. Head to the `Settings` tab of your forked repository and click on the `Security` > `Secrets and variables` > `Actions`
+![Secrets and variables](./image/github-repository-secrets-and-variables.png)
+
+2. Add the following secrets by clicking on the `New repository secret` button.
+    - `CLOUDFLARE_ACCOUNT_ID`: The Cloudflare account ID you've found.
+    - `CLOUDFLARE_API_TOKEN`: The Cloudflare API token you've created.
+
+    ![Repository secrets](./image/github-repository-secrets.png)
+
+3. Add the following variables by clicking on the `New repository variable` button in the `Variables` tab.
+    - `PROJECT_NAME`: The name of your Cloudflare project.
+    - `SITE_URL`: The URL of your site. (if you have a custom domain, you can use it, otherwise you can use the one that Cloudflare provides you.)
+    - `SITE_TITLE`: The title of your site.
+    - `SITE_DESCRIPTION`: The description of your site.
+    - `SITE_LANG`: The language of your site. (e.g. `en`, `zh-TW`)
+
+    ![Repository variables](./image/github-repository-variables-for-cloudflare-page.png)
