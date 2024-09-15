@@ -3,7 +3,7 @@ title: Deploy to GitHub Pages
 description: Deploy your site to GitHub Pages with GitHub Actions.
 pubDate: "2024-09-14"
 heroImage: "github-pages.png"
-category: ["Prerequisites"]
+categories: ["Prerequisites"]
 tags: ["prerequisites", "prepare", "deploy", "github", "pages", "github-actions"]
 ---
 
@@ -15,12 +15,12 @@ tags: ["prerequisites", "prepare", "deploy", "github", "pages", "github-actions"
 # Prepare GitHub Pages
 
 1. Head to the `Settings` tab of your forked repository and click on the `Pages` section. Then choose `GitHub Actions` as the `Build and deployment` source.
-![GitHub Repository Pages Settings](github-repository-pages-settings.png)
+![GitHub Repository Pages Settings](/github-repository-pages-settings.png)
 
 # Set up GitHub workflow
 
 1. Head to the `Settings` tab of your forked repository and click on the `Security` > `Secrets and variables` > `Actions`
-![Secrets and variables](github-repository-secrets-and-variables.png)
+![Secrets and variables](/github-repository-secrets-and-variables.png)
 
 2. Add the following variables by clicking on the `New repository variable` button in the `Variables` tab.
     - `SITE_URL`: The URL of your site. (if you have a custom domain, you can use it, otherwise you can use the one that Cloudflare provides you.)
@@ -28,5 +28,5 @@ tags: ["prerequisites", "prepare", "deploy", "github", "pages", "github-actions"
     - `SITE_DESCRIPTION`: The description of your site.
     - `SITE_LANG`: The language of your site. (e.g. `en`, `zh-TW`)
 
-    ![Repository variables](github-repository-variables-for-github-page.png)
+    ![Repository variables](/github-repository-variables-for-github-page.png)
 **Note:** If you want to use the url that GitHub provides you, it should be like this: `https://<username>.github.io/<repository-name>/`. Don't forget to set the `SITE_URL` variable to the whole URL including `/<repository-name>/`, or the page deployed will not work properly.
