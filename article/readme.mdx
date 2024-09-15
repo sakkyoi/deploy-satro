@@ -30,7 +30,7 @@ The workflow files provided in this repository are not triggered by push in defa
 
 Or you can remove the comment from the workflow file to trigger the workflow on push.
 
-```yaml
+```yaml title=".github/workflows/*.yaml" del={3-4} ins={5-6}
 on:
   workflow_dispatch:
 - # push:
