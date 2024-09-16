@@ -69,6 +69,10 @@ Code block in the article is using [Expressive Code](https://expressive-code.com
 
 > **Note**: `pluginCollapsibleSections` plugin is installed by default.
 
+## Next steps
+
+Congratulations! You have successfully completed the setup of your site. You can now start authoring your site, and don't forget to remove the those example files in the `announcement`, `footer`, `public`, and `article` directories.
+
 ## Something notable
 
 Details about Astro, please refer to the [Astro documentation](https://docs.astro.build/).
