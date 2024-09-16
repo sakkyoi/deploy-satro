@@ -79,6 +79,10 @@ Details about Astro, please refer to the [Astro documentation](https://docs.astr
 
 Feel free to forked [satro](https://github.com/sakkyoi/satro) and modify it to suit your needs.
 
+## Demo article
+
+The live demo about how to authoring your content. [Example](https://satro-example.pages.dev/article/example/)
+
 ## License
 
 This project is licensed under the LGPLv3 License - see the [LICENSE](./LICENSE) file for details.
